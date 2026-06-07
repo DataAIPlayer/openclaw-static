@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-import json
 from collections import Counter, defaultdict
 from collections.abc import Iterable
 from datetime import datetime, timedelta
