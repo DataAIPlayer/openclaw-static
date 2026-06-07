@@ -72,13 +72,14 @@ function fmt(n) { return (n ?? 0).toLocaleString() }
           <td class="num">{{ fmt(s.count) }}</td>
           <td>{{ expanded.has(s.name) ? '▾' : '▸' }}</td>
         </tr>
-        <tr v-if="expanded.has(s.name)" class="detail"
-            v-for="bu in s.by_user" :key="s.name + '|' + bu.user">
-          <td></td>
-          <td>{{ bu.user }}</td>
-          <td class="num">{{ fmt(bu.count) }}</td>
-          <td></td>
-        </tr>
+        <template v-if="expanded.has(s.name)">
+          <tr v-for="bu in s.by_user" :key="s.name + '|' + bu.user" class="detail">
+            <td></td>
+            <td>{{ bu.user }}</td>
+            <td class="num">{{ fmt(bu.count) }}</td>
+            <td></td>
+          </tr>
+        </template>
       </template>
       <tr v-if="skillRows.length === 0"><td colspan="4" class="empty">无 skill 数据</td></tr>
     </tbody>
