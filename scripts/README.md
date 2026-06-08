@@ -39,13 +39,20 @@ pytest scripts/tests/ -v
 
 ## openclaw_dashboard_stats.py — 看板数据聚合
 
-把本地 OpenClaw 会话 jsonl 按 用户×(日/周/月)×(对话/token/skill) 聚合成
-前端看板用的 stats.json。**无需 openclaw 运行环境**。
+把 OpenClaw 会话 jsonl 按 用户×(日/周/月)×(对话/token/skill) 聚合成
+前端看板用的 stats.json。两种数据源:
+
+- **local**(默认): 读本地 jsonl 文件/目录,**无需 openclaw 运行环境**,适合开发。
+- **docker**: 在服务器上扫所有 `openclaw-{user}-gateway` 容器,`docker exec` 读容器内
+  `/home/node/.openclaw/agents/main/sessions/*.jsonl*`,按容器名提取用户。与
+  `openclaw_stats.py` 同样的采集方式。
 
 skill 识别口径：skill = `~/.openclaw/.../skills/<name>/` 目录；统计 agent 用
 read/exec/edit 等工具操作该目录的 toolCall 次数（不是把 read/exec 当 skill）。
 
 ### 用法
+
+**本地 (local)**
 
 ```bash
 # 单文件，指定用户，写到前端 public 目录
@@ -56,6 +63,27 @@ python3 scripts/openclaw_dashboard_stats.py examples/example-log.jsonl \
 python3 scripts/openclaw_dashboard_stats.py \
     /data/weiwu2/sessions /data/bnzhu/sessions \
     --user weiwu2 --user bnzhu --out dashboard/public/stats.json
+```
+
+**docker (在服务器上运行)**
+
+```bash
+# 扫所有 openclaw-*-gateway 容器,聚合所有用户
+python3 scripts/openclaw_dashboard_stats.py --source docker \
+    --out dashboard/public/stats.json
+
+# 只采指定用户
+python3 scripts/openclaw_dashboard_stats.py --source docker \
+    --user weiwu2 --user bnzhu --out dashboard/public/stats.json
+```
+
+依赖:宿主机能执行 `docker ps` / `docker exec`(同 `openclaw_stats.py`)。
+
+触发:第一版手动 / cron 定时跑(如每 5 分钟)重新生成 stats.json,前端刷新即可;
+未做日志变动实时 watch。cron 例:
+
+```cron
+*/5 * * * * cd /path/to/openclaw-static && python3 scripts/openclaw_dashboard_stats.py --source docker --out dashboard/public/stats.json
 ```
 
 ### 前端
