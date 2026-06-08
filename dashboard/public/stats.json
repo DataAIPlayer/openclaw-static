@@ -1,0 +1,110 @@
+{
+  "generated_at": "2026-06-07T17:37:49+00:00",
+  "periods": {
+    "day": [
+      {
+        "bucket": "2026-05-25",
+        "label": "2026-05-25",
+        "users": [
+          {
+            "user": "weiwu2",
+            "conversations": 33,
+            "tokens": {
+              "input": 167537,
+              "output": 6166,
+              "total": 1419527
+            },
+            "skills": [
+              {
+                "name": "biz-meeting-summary",
+                "count": 13
+              }
+            ]
+          }
+        ],
+        "skills_ranking": [
+          {
+            "name": "biz-meeting-summary",
+            "count": 13,
+            "by_user": [
+              {
+                "user": "weiwu2",
+                "count": 13
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "week": [
+      {
+        "bucket": "2026-05-25",
+        "label": "2026-W22",
+        "users": [
+          {
+            "user": "weiwu2",
+            "conversations": 33,
+            "tokens": {
+              "input": 167537,
+              "output": 6166,
+              "total": 1419527
+            },
+            "skills": [
+              {
+                "name": "biz-meeting-summary",
+                "count": 13
+              }
+            ]
+          }
+        ],
+        "skills_ranking": [
+          {
+            "name": "biz-meeting-summary",
+            "count": 13,
+            "by_user": [
+              {
+                "user": "weiwu2",
+                "count": 13
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "month": [
+      {
+        "bucket": "2026-05",
+        "label": "2026-05",
+        "users": [
+          {
+            "user": "weiwu2",
+            "conversations": 33,
+            "tokens": {
+              "input": 167537,
+              "output": 6166,
+              "total": 1419527
+            },
+            "skills": [
+              {
+                "name": "biz-meeting-summary",
+                "count": 13
+              }
+            ]
+          }
+        ],
+        "skills_ranking": [
+          {
+            "name": "biz-meeting-summary",
+            "count": 13,
+            "by_user": [
+              {
+                "user": "weiwu2",
+                "count": 13
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
